@@ -1,4 +1,15 @@
 Gallery::Application.routes.draw do
+  root to: 'home#index'
+
+  resources :users, only: [:new, :create]
+  resources :sessions, only: [:new, :create, :destroy]
+
+  get 'login' => 'sessions#new', as: 'login'
+  post 'login' => 'sessions#create', as: 'login'
+  get 'logout' => 'sessions#destroy', as: 'logout'
+
+  get 'register' => 'users#new', as: 'register'
+  post 'register' => 'users#create', as: 'register'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
